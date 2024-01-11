@@ -131,3 +131,47 @@ section.addEventListener("click", (e) => {
 });
 
 //========================================================
+
+/** render Review */
+
+/** save Review */
+let form_review = document.querySelector('form');
+let id_input = document.querySelector('input');
+let pw_input = document.querySelector('input');
+let review_input = document.querySelector('input');
+/**
+ * get Review Data
+ * @returns {object[]}
+ */
+const getReview = async () => {
+  let data = JSON.parse(await localStorage.review)
+  return data;
+}
+/**
+ * set Review Data
+ * @param {string} id - value of id_input
+ * @param {string} pw - value of pw_input
+ * @param {string} review - value of review_input
+ */
+const setReview = async (id, pw, review) => {
+  let prevReview = await getReview();
+  let newReview = {id, pw, review}
+  localStorage.review = JSON.stringify([...prevReview, newReview]);
+}
+
+form_review.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  setReview();
+})
+
+/** delete Review */
+let pw_delete = document.querySelector('input')
+/**
+ * delete Review
+ * @param {string} pw - value of pw_delete
+ */
+const deleteReview = async (pw) => {
+  let prevReview = await getReview();
+  let deletedReivew = prevReview.filter(review => review.pw !== pw);
+  localStorage.review = JSON.stringify([...deletedReivew]);
+}
