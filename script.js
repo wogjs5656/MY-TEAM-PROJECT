@@ -140,20 +140,20 @@ let id_input = document.querySelector('input');
 let pw_input = document.querySelector('input');
 let review_input = document.querySelector('input');
 /**
- * get Review Data
+ * READ Review Data
  * @returns {object[]}
  */
-const getReview = async () => {
+const readReview = async () => {
   let data = JSON.parse(await localStorage.review)
   return data;
 }
 /**
- * set Review Data
+ * CREATE Review Data
  * @param {string} id - value of id_input
  * @param {string} pw - value of pw_input
  * @param {string} review - value of review_input
  */
-const setReview = async (id, pw, review) => {
+const createReview = async (id, pw, review) => {
   let prevReview = await getReview();
   let newReview = {id, pw, review}
   localStorage.review = JSON.stringify([...prevReview, newReview]);
@@ -161,7 +161,7 @@ const setReview = async (id, pw, review) => {
 
 form_review.addEventListener('submit', async (e) => {
   e.preventDefault()
-  setReview();
+  createReview();
 })
 
 /** delete Review */
@@ -174,4 +174,23 @@ const deleteReview = async (pw) => {
   let prevReview = await getReview();
   let deletedReivew = prevReview.filter(review => review.pw !== pw);
   localStorage.review = JSON.stringify([...deletedReivew]);
+}
+
+/** UPDATE Review */
+let pw_edit = document.querySelector('input');
+
+/**
+ * UPDATE review
+ * @param {string} pw 
+ * @param {string} newContent 
+ */
+const updateReview = async (pw, newContent) => {
+  let prevReview = await getReview();
+  let editReview = prevReview.map(review =>{
+    if (review.pw === pw) {
+      review.review = newContent; // 오류 : pw 가 같은 모든 review 가 변경됌
+    }
+    return review;
+  });
+  localStorage.review = JSON.stringify([...editReview]);
 }
