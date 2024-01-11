@@ -20,6 +20,20 @@
           <button class="searchBtn" id="searchBtn">검색</button>
         </div>
       </div>
+      <div class="category">
+        <select
+          name="genreChoice"
+          id="genreChoice"
+          onChange="selectGenre(value)"
+        >
+          <option value="all">전체</option>
+        </select>
+        <select name="sortion" id="sorting">
+          <option value="recommend">추천</option>
+          <option value="name">이름</option>
+          <option value="rate">평점</option>
+        </select>
+      </div>
     </header>
     <section id="section">
       <div class="modal"></div>

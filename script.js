@@ -36,6 +36,19 @@ fetch(
   })
   .catch((err) => console.error(err));
 
+fetch(
+  "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+    config.apikey +
+    "&language=ko",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => {
+    const genres = response.genres;
+    genres.map((genre) => makeCategory(genre));
+  })
+  .catch((err) => console.error(err));
+
 const btn = document.getElementById("searchBtn");
 const input = document.getElementById("search");
 
@@ -44,11 +57,33 @@ const input = document.getElementById("search");
 //========================================================
 // 렌더링
 
+// 장르 카테고리 생성함수
+const makeCategory = (genre) => {
+  const selection = document.querySelector("#genreChoice");
+  const option = `<option value=${genre.id}>${genre.name}</option>`;
+  selection.innerHTML += option;
+};
+
+//선택 장르 정렬 함수
+const selectGenre = (value) => {
+  const cards = document.querySelectorAll(".card");
+  for (let i = 0; i < cards.length; i++) {
+    let currData = cards[i].getAttribute("data-genre");
+    if (currData.includes(value)) {
+      cards[i].style.display = "flex";
+    } else if (value == "all") {
+      cards[i].style.display = "flex";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+};
+
 // 카드 생성함수
 const makeCard = (movie) => {
   const section = document.getElementById("section");
   const card = `
-  <div class="card" data-id="${movie.id}">
+  <div class="card" data-id="${movie.id}" data-genre = "${movie.genre_ids}">
     <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="" />
     <h2 class="title">${movie.title}</h2>
     <p class="rating">Rating : ${movie.vote_average}</p>
