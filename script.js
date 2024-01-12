@@ -133,17 +133,8 @@ section.addEventListener("click", (e) => {
 //========================================================
 
 /** render Review */
-const uuid = (length) => {
-  const string = "";
-  const codeArr = []
-  let uuid = ''
-  for (let i=32;i<=126;i++){
-    codeArr.push(String.fromCharCode(i))
-  }
-  for (let i=0;i<length;i++){
-    let random = Math.floor(Math.random() * 96)
-    uuid += codeArr[random]
-  }
+const uuid_36 = () => {
+  let uuid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, () => Math.floor(Math.random() * 16).toString(16))
   return uuid
 }
 
