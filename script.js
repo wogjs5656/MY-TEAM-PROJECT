@@ -5,7 +5,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: ' Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZWMxM2RiNzM2ODBiNzZmMTAxYTFhZTNmODJlNDVlZCIsInN1YiI6IjY1OGUxOTNlZDhlMTVhMTQ4ZGFiZmNhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RzzPhVh_ULVddRGIrUpRQcOVWehz0JcjKzgVNRIhecY',
+    Authorization: `Bearer ${config.accessToken}`,
   },
 };
 fetch(
@@ -133,6 +133,46 @@ section.addEventListener("click", (e) => {
 //========================================================
 
 /** render Review */
+const submitReview = () => {
+  const authorName = document.getElementById("authorName").value;
+  const reviewText = document.getElementById("reviewText").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+
+// input을 전부 입력해야 실행됨. 하나라도 비었을 경우 경고창 표시
+  if(authorName && reviewText && confirmPassword) {
+    const reviewCard = {
+      author: authorName,
+      text: reviewText,
+      password: confirmPassword,
+    };
+
+  } else {
+    alert("[오류] 빠진 내용이 있습니다.");
+  }  
+  makeReviewCard(reviewCard);
+  createReview(authorName, reviewText, confirmPassword);
+};
+
+const makeReviewCard = (reviewCard) => {
+  const reviewCardsContent = document.getElementById("reviewCards");
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("reviewCard");
+
+  const cardContent = `
+    <p>작성자: ${reviewCard.author}</p>
+    <p>리뷰 내용: ${reviewCard.text}</p>
+    <p>확인 비밀번호: ${reviewCard.password}</p>
+  `;
+
+  cardElement.innerHTML = cardContent;
+  reviewCardsContent.appendChild(cardElement);
+};
+
+// localStorage 초기화
+if (!localStorage.review) {
+  localStorage.review = JSON.stringify([]);
+}
 
 /** save Review */
 let form_review = document.querySelector('form');
@@ -143,7 +183,7 @@ let review_input = document.querySelector('input');
  * READ Review Data
  * @returns {object[]}
  */
-const readReview = async () => {
+const getReview = async () => {
   let data = JSON.parse(await localStorage.review)
   return data;
 }
@@ -188,7 +228,7 @@ const updateReview = async (pw, newContent) => {
   let prevReview = await getReview();
   let editReview = prevReview.map(review =>{
     if (review.pw === pw) {
-      review.review = newContent; // 오류 : pw 가 같은 모든 review 가 변경됌
+      review.text = newContent; // 오류 : pw 가 같은 모든 review 가 변경됌
     }
     return review;
   });

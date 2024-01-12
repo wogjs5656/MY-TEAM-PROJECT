@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내배캠 최고 평점 영화</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>내배캠 최고 평점 영화 콜렉션</h1>
-      <div class="searchWrap">
-        <p>영화 검색 :</p>
-        <div class="searchBox">
-          <input
-            type="text"
-            placeholder="영화제목을 검색해보세요"
-            id="search"
-          />
-          <button class="searchBtn" id="searchBtn">검색</button>
-        </div>
-      </div>
-    </header>
-    <section id="section">
-      <div class="modal"></div>
-      <div class="bg"></div>
 
-      <section id="reviewSection">
-        <h2>영화 리뷰 작성</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내배캠 최고 평점 영화</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>내배캠 최고 평점 영화 콜렉션</h1>
+    <div class="searchWrap">
+      <p>영화 검색 :</p>
+      <div class="searchBox">
+        <input type="text" placeholder="영화제목을 검색해보세요" id="search" />
+        <button class="searchBtn" id="searchBtn">검색</button>
+      </div>
+    </div>
+  </header>
+  <section id="section">
+    <div class="modal"></div>
+    <div class="bg"></div>
+
+    <section id="reviewSection">
+      <h2>영화 리뷰 작성</h2>
+      <form id="form_review">
         <div class="reviewForm">
           <label for="authorName">작성자</label>
           <input type="text" id="authorName" />
-  
+
           <label for="reviewText">리뷰 내용</label>
           <textarea id="reviewText" rows="4"></textarea>
-  
+
           <label for="confirmPassword">확인 비밀번호</label>
           <input type="password" id="confirmPassword" />
-  
+
           <button class="submitReviewBtn" onclick="submitReview()">리뷰 작성</button>
         </div>
-      </section>
-  
+      </form>
+      <div id="reviewCards"></div>
     </section>
-    <script src="./apikey.js"></script>
-    <script src="./script.js"></script>
-  </body>
+
+  </section>
+  <script src="./apikey.js"></script>
+  <script src="./script.js"></script>
+</body>
+
 </html>
