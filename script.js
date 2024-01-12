@@ -168,6 +168,8 @@ const makeReviewCard = (reviewCard) => {
     <p>작성자: ${reviewCard.author}</p>
     <p>리뷰 내용: ${reviewCard.text}</p>
     <p>확인 비밀번호: ${reviewCard.password}</p>
+    <button class="submitReviewBtn" >리뷰 수정</button>
+    <button class="submitReviewBtn" >리뷰 삭제</button>
   `;
 
   cardElement.innerHTML = cardContent;
