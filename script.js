@@ -133,7 +133,7 @@ section.addEventListener("click", (e) => {
 //========================================================
 
 /** render Review */
-const uuid_36 = () => {
+const uuid = () => {
   let uuid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, () => Math.floor(Math.random() * 16).toString(16))
   return uuid
 }
@@ -200,7 +200,8 @@ const getReview = async () => {
  */
 const createReview = async (id, pw, review) => {
   let prevReview = await getReview();
-  let newReview = {id, pw, review}
+  let review_id = uuid()
+  let newReview = {id, pw, review, review_id}
   localStorage.review = JSON.stringify([...prevReview, newReview]);
 }
 
