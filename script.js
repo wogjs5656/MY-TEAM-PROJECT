@@ -133,6 +133,11 @@ section.addEventListener("click", (e) => {
 //========================================================
 
 /** render Review */
+const uuid_36 = () => {
+  let uuid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, () => Math.floor(Math.random() * 16).toString(16))
+  return uuid
+}
+
 const submitReview = () => {
   const authorName = document.getElementById("authorName").value;
   const reviewText = document.getElementById("reviewText").value;
