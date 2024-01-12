@@ -133,6 +133,20 @@ section.addEventListener("click", (e) => {
 //========================================================
 
 /** render Review */
+const uuid = (length) => {
+  const string = "";
+  const codeArr = []
+  let uuid = ''
+  for (let i=32;i<=126;i++){
+    codeArr.push(String.fromCharCode(i))
+  }
+  for (let i=0;i<length;i++){
+    let random = Math.floor(Math.random() * 96)
+    uuid += codeArr[random]
+  }
+  return uuid
+}
+
 const submitReview = () => {
   const authorName = document.getElementById("authorName").value;
   const reviewText = document.getElementById("reviewText").value;
