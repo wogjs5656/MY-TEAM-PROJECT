@@ -137,11 +137,11 @@ const submitReview = () => {
   const authorName = document.getElementById("authorName").value;
   const reviewText = document.getElementById("reviewText").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-
+  let reviewCard;
 
 // input을 전부 입력해야 실행됨. 하나라도 비었을 경우 경고창 표시
   if(authorName && reviewText && confirmPassword) {
-    const reviewCard = {
+    reviewCard = {
       author: authorName,
       text: reviewText,
       password: confirmPassword,
