@@ -30,6 +30,7 @@ header {
   color: lightblue;
   justify-content: center;
 }
+/* 사용자 에이전트 이슈로 h1 이름으로 생성 */
 h1 {
   margin-top: 15px;
 }
@@ -56,6 +57,7 @@ header .searchBox button {
   color: white;
   font-size: 20px;
 }
+/* header .searchBox button : 기존꺼에 따로 더 만듦 */
 header .searchBox button{
   width: 70px;
 }
@@ -86,7 +88,7 @@ section {
   flex-flow: column nowrap;
   align-items: center;
   gap: 25px;
-  background: gray;
+  background: #b7b2b2;
   box-shadow: inset 1px 1px 10px 2px white;
   margin-bottom: 30px;
   border-radius: 20px;
@@ -103,6 +105,7 @@ section {
   transition: all 0.5s;
   margin-top: 10px;
 }
+/* h2,.rating : 새로 추가한 항목 */
 h2 {
   width: 350px;
   text-align: center;
