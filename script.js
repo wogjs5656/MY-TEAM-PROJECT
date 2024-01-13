@@ -5,7 +5,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5N2QzODM3NzYzY2E1MDJhMzZkN2FhOGIwZDgxYmI5NSIsInN1YiI6IjY1OGUxYWMyNGMxYmIwMTZhMjMyOTFjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EF_ApTJJld-R_XBkTFLpP00cBr2CcQE3u8T_1NprXwg"
+    Authorization: `${config.accessToken}`,
   },
 };
 fetch(
