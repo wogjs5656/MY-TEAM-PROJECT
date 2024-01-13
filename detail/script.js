@@ -15,29 +15,53 @@ const renderReviewCard = async () => {
         <p>작성자: ${id}</p>
         <p>리뷰 내용: ${review}</p>
         <p>확인 비밀번호: ${pw}</p>
-        <button class="submitReviewBtn">리뷰 수정</button>
-        <button class="submitReviewBtn">리뷰 삭제</button>
+        <button class="reviewUpdate dataBtn" >리뷰 수정</button>
+        <button class="submitReviewBtn dataBtn">리뷰 삭제</button>
+        <div class="updateContainer">
+          <input class="reviewInput" placeholder="리뷰 값 작성" name="reviewInput" value="${review}"/>
+          <input class="pwInput" placeholder="비밀번호" name="pwInput" />
+          <button class="updateBtn" name=${review_id}>수정하기</button>
+        </div>
       </div>
     `;
 
   let cards = await reviews.map((review) => card(review)).join("");
 
   reviewCardsContent.innerHTML = cards;
+  addEvent()
 };
+
+
+const addEvent = async () => {
+  document.querySelector('.reviewCard .reviewUpdate').addEventListener('click', () => {
+    let toggleBtn = document.querySelector('.reviewCard .updateContainer')
+    if (toggleBtn.style.display === 'none' || toggleBtn.style.display === "") {
+      toggleBtn.style.display = 'block'
+    }else{
+      toggleBtn.style.display = 'none'
+    }
+  })
+  document.querySelector('.updateBtn').addEventListener('click', async () => {
+    const uuid = document.querySelector('.updateBtn').name;
+    const content = document.querySelector('.reviewInput').value
+    const pw = document.querySelector('.pwInput').value;
+    await updateReview(uuid, pw, content)
+    await renderReviewCard();
+  })
+}
 
 const submitReview = async () => {
   const authorName = document.getElementById("authorName").value;
   const reviewText = document.getElementById("reviewText").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
   createReview(authorName, reviewText, confirmPassword);
-  await renderReviewCard();
 };
 
-document.addEventListener('DOMContentLoaded', renderReviewCard)
+document.addEventListener("DOMContentLoaded", renderReviewCard);
 
 document.querySelector(".submitReviewBtn").addEventListener("click", async () => {
-    await submitReview()
-    await renderReviewCard()
+  await submitReview();
+  await renderReviewCard();
 });
 
 // localStorage 초기화
@@ -45,11 +69,6 @@ if (!localStorage.review) {
   localStorage.review = JSON.stringify([]);
 }
 
-/** save Review */
-let form_review = document.querySelector("form");
-let id_input = document.querySelector("input");
-let pw_input = document.querySelector("input");
-let review_input = document.querySelector("input");
 /**
  * READ Review Data
  * @returns {object[]}
@@ -71,11 +90,6 @@ const createReview = async (id, pw, review) => {
   localStorage.review = JSON.stringify([...prevReview, newReview]);
 };
 
-// form_review.addEventListener('submit', async (e) => {
-//   e.preventDefault()
-//   createReview();
-// })
-
 /** delete Review */
 let pw_delete = document.querySelector("input");
 /**
@@ -96,11 +110,13 @@ let pw_edit = document.querySelector("input");
  * @param {string} pw
  * @param {string} newContent
  */
-const updateReview = async (pw, newContent) => {
+const updateReview = async (uuid, pw, newContent) => {
   let prevReview = await getReview();
   let editReview = prevReview.map((review) => {
-    if (review.pw === pw) {
-      review.text = newContent; // 오류 : pw 가 같은 모든 review 가 변경됌
+    if (review.review_id === uuid && review.pw === pw) {
+      review.review = newContent;
+    }else if(review.review_id === uuid && review.pw !== pw){
+      alert("비밀번호가 틀렸습니다");
     }
     return review;
   });
