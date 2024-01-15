@@ -1,7 +1,34 @@
+function getQueryParameters(queryString) {
+  // 문자열 앞의 물음표(?)를 제거
+  queryString = queryString.substring(1);
+
+  // '&'로 문자열을 분리하여 배열로 만듦
+  let queryParamsArray = queryString.split('&');
+
+  // 결과를 담을 객체 생성
+  let queryParams = {};
+
+  // 배열을 순회하면서 각각의 키와 값을 객체에 추가
+  for (let i = 0; i < queryParamsArray.length; i++) {
+    const pair = queryParamsArray[i].split('=');
+    const key = decodeURIComponent(pair[0]); // 키 디코딩
+    const value = decodeURIComponent(pair[1] || ''); // 값 디코딩
+
+    // 객체에 키와 값을 추가
+    if (key) {
+      queryParams[key] = value;
+    }
+  }
+
+  return queryParams;
+}
+
 //상세페이지 구현 
 //뒤로가기 버튼 추가
-const movieId1 = window.location.search;
-const movieId = movieId1.slice(1);
+const queryString = getQueryParameters(window.location.search)
+console.log(queryString)
+const movieId = queryString.movieId;
+const movieTitle = queryString.title;
 
 const options = {
   method: "GET",
@@ -139,8 +166,8 @@ document.querySelector(".submitReviewBtn").addEventListener("click", async () =>
 });
 
 // localStorage 초기화
-if (!localStorage.review) {
-  localStorage.review = JSON.stringify([]);
+if (!localStorage.getItem(movieTitle)) {
+  localStorage.setItem(movieTitle, JSON.stringify([]))
 }
 
 /**
@@ -148,7 +175,8 @@ if (!localStorage.review) {
 * @returns {object[]}
 */
 const getReview = async () => {
-  let data = JSON.parse(await localStorage.review);
+  let data = JSON.parse(await localStorage[movieTitle]);
+  console.log(movieTitle)
   return data;
 };
 /**
@@ -158,10 +186,11 @@ const getReview = async () => {
 * @param {string} review - value of review_input
 */
 const createReview = async (id, review, pw) => {
+  console.log("click")
   let prevReview = await getReview();
   let review_id = uuid();
   let newReview = { id, pw, review, review_id };
-  localStorage.review = JSON.stringify([...prevReview, newReview]);
+  localStorage.setItem(movieTitle, JSON.stringify([...prevReview, newReview]))
 };
 
 /** delete Review */
@@ -176,7 +205,7 @@ const deleteReview = async (uuid, pw) => {
 
   if (reviewToDelete && reviewToDelete.pw === pw) {
     let updatedReviewList = prevReview.filter((review) => review.review_id !== uuid);
-    localStorage.review = JSON.stringify(updatedReviewList);
+    localStorage.setItem(movieTitle, JSON.stringify(updatedReviewList))
   } else {
     alert("해당 비밀번호가 일치하지 않습니다.");
   }
@@ -200,5 +229,5 @@ const updateReview = async (uuid, pw, newContent) => {
       }
       return review;
   });
-  localStorage.review = JSON.stringify([...editReview]);
+  localStorage.setItem(movieTitle, JSON.stringify([...editReview]));
 };
