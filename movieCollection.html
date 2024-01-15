@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내배캠 최고 평점 영화</title>
+    <title>임시 타이틀 : GooFlix</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <header>
-      <h1>내배캠 최고 평점 영화 콜렉션</h1>
+      <h1>GooFlix</h1>
       <div class="searchWrap">
-        <p>영화 검색 :</p>
         <div class="searchBox">
           <input
             type="text"
@@ -19,6 +18,20 @@
           />
           <button class="searchBtn" id="searchBtn">검색</button>
         </div>
+      </div>
+      <div class="category">
+        <select
+          name="genreChoice"
+          id="genreChoice"
+          onChange="selectGenre(value)"
+        >
+          <option value="all">전체</option>
+        </select>
+        <select name="sorting" id="sorting" onChange = "sorting(value)">
+          <option value="rate">평점</option>
+          <option value="name">이름</option>
+          <option value="date">발매일</option>
+        </select>
       </div>
     </header>
     <section id="section">
