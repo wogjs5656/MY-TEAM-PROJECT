@@ -169,10 +169,7 @@ input.addEventListener("keyup", (e) => {
     searchClick();
   }
 });
-// 검색창에 포커스아웃되면 검색창 비우기
-input.addEventListener("focusout", (e) => {
-  e.currentTarget.value = "";
-});
+
 
 // 검색 함수
 const searchClick = () => {
