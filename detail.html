@@ -5,13 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>상세 페이지</title>
         <link rel="stylesheet" href="./style/detail.css" />
+        <link rel="stylesheet" href="./review/style.css" />
     </head>
     <body>
         <section></section>
         <div class="back_border">
             <p class="backbutton" type="button" onclick="history.back();">뒤로가기</p>
-        </div>
+        <div>
+            <section id="section">
+                <section id="reviewSection">
+                  <h2>영화 리뷰 작성</h2>
+                  <div id="form_review">
+                    <div class="reviewForm">
+                      <label for="authorName">작성자</label>
+                      <input type="text" id="authorName" />
+          
+                      <label for="reviewText">리뷰 내용</label>
+                      <textarea id="reviewText" rows="4"></textarea>
+          
+                      <label for="confirmPassword">확인 비밀번호</label>
+                      <input type="password" id="confirmPassword" />
+          
+                      <button class="submitReviewBtn">리뷰 작성</button>
+                    </div>
+                  </div>
+                  <div id="reviewCards"></div>
+                </section>
+              </section>
+
         <script src="./script/apiKey.js"></script>
-        <script src="script/detail.js"></script>
+        <script src="./script/detail.js"></script>
     </body>
 </html>
