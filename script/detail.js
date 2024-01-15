@@ -8,9 +8,8 @@ const options = {
   headers: {
     accept: "application/json",
     Authorization: 'Bearer ' + config.accessToken,
-  },
+  }
 };
-
 fetch(
   "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US",
   options
@@ -23,13 +22,16 @@ fetch(
       response;
       
     const content = `
-    <h1>${title}</h1>
-    <img src="https://image.tmdb.org/t/p/w300/${poster_path}" alt="" />
-    <p>Release Date: ${release_date}</p>
-    <p>Genre: ${genre}</p>
-    <p>Rating: ${vote_average}</p>
-    <p>Overview: ${overview}</p>
-    <input type="button" value="뒤로가기!!" onclick="history.back();" />
+    <div class = 'content'>
+      <img src="https://image.tmdb.org/t/p/w300/${poster_path}" alt="" />
+      <div class= 'wrap'>
+        <h1>${title}</h1>
+        <p>Release Date: ${release_date}</p>
+        <p>Genre: ${genre}</p>
+        <p>Rating: ${vote_average}</p>
+        <p>Overview: ${overview}</p>
+      </div>
+    </div>
   `;
 
     section.innerHTML += content;

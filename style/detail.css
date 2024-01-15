@@ -18,60 +18,55 @@ body {
   font-family: "Pretendard-Regular";
   font-size: 16px;
   color: #333;
-  background: #7bd3ea;
+  background-image: url("https://media.istockphoto.com/id/1458449584/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EB%B3%84%EC%9D%B4-%EB%B9%9B%EB%82%98%EB%8A%94-%EB%B0%A4%ED%95%98%EB%8A%98-%EB%B3%84%EC%9D%B4-%EB%B9%9B%EB%82%98%EB%8A%94-%EB%B0%A4-%EB%B3%84%EB%B9%9B%EC%9D%B4-%EB%B0%98%EC%A7%9D%EC%9D%B4%EB%8A%94-%EC%A7%84%ED%95%9C-%ED%8C%8C%EB%9E%80%EC%83%89-%EB%B0%B0%EA%B2%BD%EC%9D%B4-%EC%9A%B0%EC%A3%BC-%EA%B3%B5%EA%B0%84%EC%97%90%EC%84%9C-%EB%B0%98%EC%A7%9D%EC%9D%B4%EA%B3%A0-%EA%B9%9C%EB%B0%95%EC%9E%85%EB%8B%88%EB%8B%A4.jpg?s=640x640&k=20&c=NanprfAXAzLlLycyfoy0B_MangAxEAsrTLfIBp6HfIM=");
 }
 
-
-.back_border{
-    border-radius: 10px/60px;
-}
 
 .backbutton  {
-    width: 0;
-    height: 0;
-    border-bottom: 15px solid transparent;
-    border-top: 15px solid transparent;
-    border-left: 20px solid transparent;
-    border-right: 20px solid gray;
-    flex-flow: column wrap;
-    font-size: 16px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    font-size: 12px;
+    font-weight:bold;
     color: #333;
+    position: absolute;
+    left : 100px; 
+    top:50px;
+    text-shadow:  1px 1px 1px rgba(255,255,255,.5) ;
+    background: #f5f5dc;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px;
   }
 
-/* .section {
-  padding-top: 50px;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10%;
-  padding: 100px auto;
-} */
 
 .content {
-  width: 400px;
+
+  border-style: double;
+  width: 80vw;
   height: auto;
   padding: 5px;
-  /* display: flex; */
+  margin:10vw auto;
+  display: flex; 
   flex-flow: row nowrap;
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
-  /* position: relative; */
+}
+.content .wrap {
+  padding:50px auto; 
+  border-radius:20px;
+  color: #ededed; 
+}
+.content h1 {
+  font-size: 1.4em;
+  margin-bottom:30px;
+}
+.content p {
+  font-size: 1.2em;  
+  line-height: 1.5em;
+  margin: 15px 0;
 }
 
-.content img {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-  transform: scale(0.8);
-  transition: all 0.5s;
-}
 
 
 
