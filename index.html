@@ -19,21 +19,21 @@
           <button class="searchBtn" id="searchBtn">검색</button>
         </div>
       </div>
-      <div class="category">
-        <select
-          name="genreChoice"
-          id="genreChoice"
-          onChange="selectGenre(value)"
-        >
-          <option value="all">전체</option>
-        </select>
-        <select name="sorting" id="sorting" onChange="sorting(value)">
-          <option value="rate">평점</option>
-          <option value="name">이름</option>
-          <option value="date">발매일</option>
-        </select>
-      </div>
     </header>
+    <div class="category">
+      <select class="option1"
+        name="genreChoice"
+        id="genreChoice"
+        onChange="selectGenre(value)"
+      >
+        <option value="all">전체</option>
+      </select>
+      <select class="option2"name="sorting" id="sorting" onChange="sorting(value)">
+        <option value="rate">평점</option>
+        <option value="name">이름</option>
+        <option value="date">발매일</option>
+      </select>
+    </div>
     <section id="section"></section>
     <script src="./script/apiKey.js"></script>
     <script src="./script/main.js"></script>

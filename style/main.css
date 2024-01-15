@@ -53,7 +53,7 @@ header .searchBox button {
   height: 70px;
   width: 500px;
   border: 2px solid lightblue;
-  border-radius: 25px;
+  border-radius: 17px;
   background-color: transparent;
   color: white;
   font-size: 20px;
@@ -71,8 +71,27 @@ header button {
   color: #fff;
   width: 50px;
 }
+.category {
+  display: flex;
+  justify-content: end;
+  margin-top: 90px;
+  margin-right: 170px;
+  margin-bottom: 10px;
+}
+.option1,
+.option2 {
+  border-radius: 7px;
+  border: 0px solid transparent;
+  background-color: #fbfbb0;
+  box-shadow: 1px 1px 5px 1px white;
+  margin-right: 10px;
+  text-align: center;
+  height: 38px;
+  width: 120px;
+  font-size: 15px;
+  font-weight: bold;
+}
 section {
-  padding-top: 90px;
   width: 100%;
   height: auto;
   display: flex;
@@ -89,8 +108,8 @@ section {
   flex-flow: column nowrap;
   align-items: center;
   gap: 25px;
-  background: #b7b2b2;
-  box-shadow: inset 1px 1px 10px 2px white;
+  background: lightblue;
+  box-shadow: inset 1px 1px 10px 5px white;
   margin-bottom: 30px;
   border-radius: 20px;
   position: relative;
