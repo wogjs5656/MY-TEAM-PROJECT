@@ -20,17 +20,13 @@ fetch(
     const cards1 = document.querySelectorAll(".card");
     cards1.forEach((card) => {
       card.addEventListener("click", () => {
-        window.location.href = "./DetailPage.html";
         const movieId = card.getAttribute("data-id");
+        window.location.href = `./movieCollection_2.html?${movieId}`;
         fetch(
           "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US",
           options
         )
           .then((response) => response.json())
-          .then((response) => {
-             window.location.href = `movieCollection_2.html?${movieId}`;
-            //openModal(response);
-          })
           .catch((err) => console.error(err));
       });
     });
@@ -149,8 +145,8 @@ const sorting = (value) => {
 // 카드 생성함수
 const makeCard = (movie) => {
   const section = document.getElementById("section");
-   //console.log('movie', movie);
-  const { id, title, poster_path, vote_average} = movie;
+  //console.log('movie', movie);
+  const { id, title, poster_path, vote_average } = movie;
   const card = `
     <div class="card" data-id="${id}" data-genre = "${movie.genre_ids}">
       <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="" />
