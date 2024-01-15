@@ -21,7 +21,7 @@ fetch(
     cards1.forEach((card) => {
       card.addEventListener("click", () => {
         const movieId = card.getAttribute("data-id");
-        window.location.href = `./movieCollection_2.html?${movieId}`;
+        window.location.href = `./detail.html?${movieId}`;
         fetch(
           "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US",
           options
