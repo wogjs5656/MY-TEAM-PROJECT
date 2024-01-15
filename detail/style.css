@@ -46,3 +46,6 @@
   .updateContainer{
     display: none;
   }
+  .deleteContainer{
+    display: none;
+  }
