@@ -20,6 +20,7 @@ fetch(
     const cards1 = document.querySelectorAll(".card");
     cards1.forEach((card) => {
       card.addEventListener("click", () => {
+        window.location.href = "./DetailPage.html";
         const movieId = card.getAttribute("data-id");
         fetch(
           "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US",
