@@ -5,7 +5,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `${config.accessToken}`,
+    Authorization: "Bearer " + config.accessToken,
   },
 };
 fetch(
@@ -15,6 +15,7 @@ fetch(
   .then((response) => response.json())
   .then((response) => {
     const movies = response.results;
+    moviesArr = response.results;
     movies.map((movie) => makeCard(movie));
     const cards1 = document.querySelectorAll(".card");
     cards1.forEach((card) => {
@@ -37,19 +38,119 @@ fetch(
   })
   .catch((err) => console.error(err));
 
+fetch(
+  "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+    config.apikey +
+    "&language=ko",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => {
+    const genres = response.genres;
+    genres.map((genre) => makeCategory(genre));
+  })
+  .catch((err) => console.error(err));
+
 const btn = document.getElementById("searchBtn");
 const input = document.getElementById("search");
-
+let moviesArr = [];
 //========================================================
 
 //========================================================
 // 렌더링
 
+// 장르 카테고리 생성함수
+const makeCategory = (genre) => {
+  const selection = document.querySelector("#genreChoice");
+  const option = `<option value=${genre.id}>${genre.name}</option>`;
+  selection.innerHTML += option;
+};
+
+//선택 장르 정렬 함수
+const selectGenre = (value) => {
+  const cards = Array.from(document.querySelectorAll(".card"));
+  let selected = [];
+  let unSelected = [];
+
+  selected = cards.filter((item) => {
+    // 선택된 장르의 카드들
+    let currData = item.getAttribute("data-genre");
+    return currData.includes(value);
+  });
+
+  unSelected = cards.filter((item) => {
+    // 선택되지 않은 장르의 카드들
+    let currData = item.getAttribute("data-genre");
+    return !currData.includes(value);
+  });
+
+  if (value === "all") {
+    cards.forEach((item) => {
+      item.style.display = "flex";
+    });
+  } else if (unSelected.length == 20) {
+    cards.forEach((item) => {
+      item.style.display = "flex";
+    });
+    alert("선택된 장르의 영화가 없습니다!");
+  } else {
+    cards.forEach((item) => {
+      item.style.display = "flex";
+    });
+    unSelected.forEach((item) => {
+      item.style.display = "none";
+    });
+  }
+};
+
+// 선택한 정렬 기준으로 정렬 함수
+const sorting = (value) => {
+  let cards = Array.from(document.querySelectorAll(".card"));
+  const section = document.getElementById("section");
+
+  // 개봉일 배열
+  const release_date = moviesArr.map((movie) => {
+    return movie.release_date;
+  });
+  const titleArr = moviesArr.map((movie) => movie.title);
+  const dateObj = release_date.reduce((acc, releaseDate, index) => {
+    acc[titleArr[index]] = releaseDate;
+    return acc;
+  }, {});
+
+  if (value === "rate") {
+    //평점순 정렬
+    cards.sort((a, b) => {
+      let valueA = Number(a.childNodes[5].innerHTML.slice(9));
+      let valueB = Number(b.childNodes[5].innerHTML.slice(9));
+      return valueB - valueA;
+    });
+    cards.forEach((card) => section.appendChild(card));
+  } else if (value === "name") {
+    // 제목순정렬
+    cards.sort((a, b) => {
+      let valueA = a.childNodes[3].innerHTML;
+      let valueB = b.childNodes[3].innerHTML;
+      return valueA.localeCompare(valueB);
+    });
+    cards.forEach((card) => section.appendChild(card));
+  } else {
+    // 발매일순 정렬
+    cards.sort((a, b) => {
+      let titleA = a.childNodes[3].innerHTML;
+      let titleB = b.childNodes[3].innerHTML;
+      return dateObj[titleA].localeCompare(dateObj[titleB]);
+    });
+
+    cards.forEach((card) => section.appendChild(card));
+  }
+};
+
 // 카드 생성함수
 const makeCard = (movie) => {
   const section = document.getElementById("section");
   const card = `
-  <div class="card" data-id="${movie.id}">
+  <div class="card" data-id="${movie.id}" data-genre = "${movie.genre_ids}">
     <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="" />
     <h2 class="title">${movie.title}</h2>
     <p class="rating">Rating : ${movie.vote_average}</p>
@@ -100,9 +201,17 @@ input.addEventListener("keyup", (e) => {
     searchClick();
   }
 });
+// 검색창에 포커스아웃되면 검색창 비우기
+input.addEventListener("focusout", (e) => {
+  e.currentTarget.value = "";
+});
+
+// 검색 함수
 const searchClick = () => {
   const cards = document.getElementsByClassName("card");
   let text = input.value.toLowerCase();
+  const genreChoice = document.querySelector("#genreChoice");
+  const sorting = document.querySelector("#sorting");
   Array.from(cards).forEach((item) => {
     const title = item.querySelector(".title").innerHTML.toLowerCase();
     if (text.length > 0) {
@@ -115,6 +224,8 @@ const searchClick = () => {
       item.style.display = "flex";
     }
   });
+  genreChoice.value = "all";
+  sorting.value = "rate";
 };
 
 // 모달창 닫기
