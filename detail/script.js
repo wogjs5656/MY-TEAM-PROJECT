@@ -51,7 +51,7 @@ const addEvent = async () => {
     document.querySelectorAll(".updateBtn").forEach((c) =>
         c.addEventListener("click", async (evt) => {
             const uuid_of_target = evt.target.name;
-            const updateContainer = document.getElementById(uuid_of_target)
+            const updateContainer = document.getElementById(uuid_of_target);
             const uuid = updateContainer.querySelector(".updateBtn").name;
             const content = updateContainer.querySelector(".reviewInput").value;
             const pw = updateContainer.querySelector(".pwInput").value;
@@ -61,17 +61,19 @@ const addEvent = async () => {
     );
 
     // deleteReviewBtn
-    document.querySelector(".deleteReviewBtn").addEventListener("click", async () => {
-        const review_id = document.querySelector(".deleteReviewBtn").name;
-        const pw = prompt("리뷰를 삭제하려면 확인 비밀번호를 입력하세요.");
+    document.querySelectorAll(".deleteReviewBtn").forEach((deleteReviewBtn) =>
+        deleteReviewBtn.addEventListener("click", async () => {
+            const review_id = deleteReviewBtn.name;
+            const pw = prompt("리뷰를 삭제하려면 확인 비밀번호를 입력하세요.");
 
-        if (pw !== null && pw.trim() !== "") {
-            await deleteReview(review_id, pw);
-            await renderReviewCard();
-        } else {
-            alert("값이 입력되지 않았습니다.");
-        }
-    });
+            if (pw !== null && pw.trim() !== "") {
+                await deleteReview(review_id, pw);
+                await renderReviewCard();
+            } else {
+                alert("값이 입력되지 않았습니다.");
+            }
+        })
+    );
 };
 
 const submitReview = async () => {
@@ -108,10 +110,10 @@ const getReview = async () => {
  * @param {string} review - value of review_input
  */
 const createReview = async (id, review, pw) => {
-  let prevReview = await getReview();
-  let review_id = uuid();
-  let newReview = { id, pw, review, review_id };
-  localStorage.review = JSON.stringify([...prevReview, newReview]);
+    let prevReview = await getReview();
+    let review_id = uuid();
+    let newReview = { id, pw, review, review_id };
+    localStorage.review = JSON.stringify([...prevReview, newReview]);
 };
 
 /** delete Review */
