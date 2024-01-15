@@ -17,8 +17,13 @@ const renderReviewCard = async () => {
         <p>확인 비밀번호: ${pw}</p>
         <button class="reviewUpdate dataBtn" name=${review_id}>리뷰 수정</button>
         <button class="deleteReviewBtn" name=${review_id}>리뷰 삭제</button>
-        <div class="updateContainer" data-uuid=${review_id}>
-          <input class="reviewInput" placeholder="리뷰 값 작성" name="reviewInput" value="${review}"/>
+        <div class="updateContainer" id="${review_id}" data-uuid=${review_id}>
+          <input 
+            class="reviewInput" 
+            placeholder="리뷰 값 작성" 
+            name="reviewInput" 
+            value="${review}"
+          />
           <input class="pwInput" placeholder="비밀번호" name="pwInput" />
           <button class="updateBtn" name=${review_id}>수정하기</button>
         </div>
@@ -35,9 +40,7 @@ const addEvent = async () => {
     document.querySelectorAll(".reviewCard .reviewUpdate").forEach((c) =>
         c.addEventListener("click", (evt) => {
             const uuid = evt.target.name;
-            let updateContainer = Array.from(document.querySelectorAll(".updateContainer")).filter(
-                (c) => c.dataset.uuid === uuid
-            )[0];
+            let updateContainer = document.getElementById(uuid);
             if (updateContainer.style.display === "none" || updateContainer.style.display === "") {
                 updateContainer.style.display = "block";
             } else {
@@ -46,10 +49,12 @@ const addEvent = async () => {
         })
     );
     document.querySelectorAll(".updateBtn").forEach((c) =>
-        c.addEventListener("click", async () => {
-            const uuid = document.querySelector(".updateBtn").name;
-            const content = document.querySelector(".reviewInput").value;
-            const pw = document.querySelector(".pwInput").value;
+        c.addEventListener("click", async (evt) => {
+            const uuid_of_target = evt.target.name;
+            const updateContainer = document.getElementById(uuid_of_target)
+            const uuid = updateContainer.querySelector(".updateBtn").name;
+            const content = updateContainer.querySelector(".reviewInput").value;
+            const pw = updateContainer.querySelector(".pwInput").value;
             await updateReview(uuid, pw, content);
             await renderReviewCard();
         })
