@@ -42,6 +42,12 @@
         }
       ]
       ```
+    - review-id
+      - uuid
+        ```js
+        xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx 
+        // 8-4-4-4-12
+        ```
     - localStorage 사용
       - 조회
         ```js
