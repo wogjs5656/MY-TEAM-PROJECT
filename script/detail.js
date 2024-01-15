@@ -26,7 +26,6 @@ function getQueryParameters(queryString) {
 //상세페이지 구현 
 //뒤로가기 버튼 추가
 const queryString = getQueryParameters(window.location.search)
-console.log(queryString)
 const movieId = queryString.movieId;
 const movieTitle = queryString.title;
 
@@ -176,7 +175,6 @@ if (!localStorage.getItem(movieTitle)) {
 */
 const getReview = async () => {
   let data = JSON.parse(await localStorage[movieTitle]);
-  console.log(movieTitle)
   return data;
 };
 /**
@@ -186,7 +184,6 @@ const getReview = async () => {
 * @param {string} review - value of review_input
 */
 const createReview = async (id, review, pw) => {
-  console.log("click")
   let prevReview = await getReview();
   let review_id = uuid();
   let newReview = { id, pw, review, review_id };
