@@ -21,7 +21,8 @@ fetch(
     cards1.forEach((card) => {
       card.addEventListener("click", () => {
         const movieId = card.getAttribute("data-id");
-        window.location.href = `./detail.html?${movieId}`;
+        const movieTitle = card.getAttribute("data-title");
+        window.location.href = `./detail.html?movieId=${movieId}&title=${movieTitle}`;
         fetch(
           "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US",
           options
@@ -147,8 +148,9 @@ const makeCard = (movie) => {
   const section = document.getElementById("section");
   //console.log('movie', movie);
   const { id, title, poster_path, vote_average } = movie;
+  console.log(title)
   const card = `
-    <div class="card" data-id="${id}" data-genre = "${movie.genre_ids}">
+    <div class="card" data-id="${id}" data-title="${title}" data-genre = "${movie.genre_ids}">
       <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="" />
       <h2 class="title" >${title} </h2>
       <p class="rating"> Rating : ${vote_average}</p>
