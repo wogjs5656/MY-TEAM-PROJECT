@@ -80,9 +80,9 @@ const renderReviewCard = async () => {
 
   const card = ({ id, pw, review, review_id }) => `
     <div class="reviewCard">
-      <p>작성자: ${id}</p>
-      <p>리뷰 내용: ${review}</p>
-      <p>확인 비밀번호: ${pw}</p>
+      <div class="ReviewGap">작성자: ${id}</div>
+      <div class="ReviewGap">리뷰 내용: ${review}</div>
+      <div class="ReviewGap">확인 비밀번호: ${pw}</div>
       <button class="reviewUpdate dataBtn" name=${review_id}>리뷰 수정</button>
       <button class="deleteReviewBtn" name=${review_id}>리뷰 삭제</button>
       <div class="updateContainer" id="${review_id}" data-uuid=${review_id}>
