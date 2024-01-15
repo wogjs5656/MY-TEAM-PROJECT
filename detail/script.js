@@ -97,7 +97,7 @@ const getReview = async () => {
  * @param {string} pw - value of pw_input
  * @param {string} review - value of review_input
  */
-const createReview = async (id, pw, review) => {
+const createReview = async (id, review, pw) => {
   let prevReview = await getReview();
   let review_id = uuid();
   let newReview = { id, pw, review, review_id };
