@@ -80,7 +80,13 @@ const submitReview = async () => {
   const authorName = document.getElementById("authorName").value;
   const reviewText = document.getElementById("reviewText").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-  createReview(authorName, reviewText, confirmPassword);
+  await createReview(authorName, reviewText, confirmPassword);
+
+  document.getElementById("authorName").value = "";
+  document.getElementById("reviewText").value = "";
+  document.getElementById("confirmPassword").value = "";
+  
+  await renderReviewCard();
 };
 
 document.addEventListener("DOMContentLoaded", renderReviewCard);
