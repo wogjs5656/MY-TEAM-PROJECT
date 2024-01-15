@@ -28,8 +28,8 @@ fetch(
         )
           .then((response) => response.json())
           .then((response) => {
-            modalLoad(response);
-            openModal(response);
+             window.location.href = `movieCollection_2.html?${movieId}`;
+            //openModal(response);
           })
           .catch((err) => console.error(err));
       });
@@ -149,44 +149,16 @@ const sorting = (value) => {
 // 카드 생성함수
 const makeCard = (movie) => {
   const section = document.getElementById("section");
+   //console.log('movie', movie);
+  const { id, title, poster_path, vote_average} = movie;
   const card = `
-  <div class="card" data-id="${movie.id}" data-genre = "${movie.genre_ids}">
-    <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="" />
-    <h2 class="title">${movie.title}</h2>
-    <p class="rating">Rating : ${movie.vote_average}</p>
-    <p class="overview">
-      ${movie.overview}
-      <span class='more'>더 알아보기</span>
-    </p>
-  </div>
+    <div class="card" data-id="${id}" data-genre = "${movie.genre_ids}">
+      <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="" />
+      <h2 class="title" >${title} </h2>
+      <p class="rating"> Rating : ${vote_average}</p>
+    </div>
   `;
   section.innerHTML += card;
-};
-// 모달창 로드
-const modalLoad = (movie) => {
-  const modalContent = document.querySelector(".modal");
-  const genre = movie.genres.map((genre) => genre.name).join(", ");
-  const homepageDisplay = movie.homepage ? "block" : "none";
-
-  modalContent.innerHTML = `
-    <p>제목 : <span class="motitle">${movie.title}</span></p>
-    <p>장르 : <span class="mogenres">${genre}</span></p>
-    <p>개봉일 : <span class="modate">${movie.release_date}</span></p>
-    <p>런타임 : <span class="moruntime">${movie.runtime}분</span></p>
-    <p>평점 : <span class="movote">${movie.vote_average}</span></p>
-    <p class="page" style="display: ${homepageDisplay}">
-      홈페이지 : <a href="${movie.homepage}" class="mohomepage" target="_blank">${movie.homepage}</a>
-    </p>
-    <button class="closeBtn">닫기</button>
-  `;
-};
-
-// 모달창 열기
-const openModal = (movie) => {
-  const modal = document.querySelector(".modal");
-  const bg = document.querySelector(".bg");
-  modal.style.top = "50%";
-  bg.style.display = "block";
 };
 
 //========================================================
@@ -227,19 +199,5 @@ const searchClick = () => {
   genreChoice.value = "all";
   sorting.value = "rate";
 };
-
-// 모달창 닫기
-section.addEventListener("click", (e) => {
-  const closeBtn = document.querySelector(".closeBtn");
-  if (
-    e.target.classList.contains("closeBtn") ||
-    e.target.classList.contains("bg")
-  ) {
-    const modal = document.querySelector(".modal");
-    const bg = document.querySelector(".bg");
-    modal.style.top = "150%";
-    bg.style.display = "none";
-  }
-});
 
 //========================================================
