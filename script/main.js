@@ -114,6 +114,7 @@ const sorting = (value) => {
     acc[titleArr[index]] = releaseDate;
     return acc;
   }, {});
+  console.log(dateObj)
 
   if (value === "rate") {
     //평점순 정렬
@@ -134,8 +135,8 @@ const sorting = (value) => {
   } else {
     // 발매일순 정렬
     cards.sort((a, b) => {
-      let titleA = a.childNodes[3].innerHTML;
-      let titleB = b.childNodes[3].innerHTML;
+      let titleA = a.childNodes[3].innerHTML.trim();
+      let titleB = b.childNodes[3].innerHTML.trim();
       return dateObj[titleA].localeCompare(dateObj[titleB]);
     });
 
@@ -146,9 +147,7 @@ const sorting = (value) => {
 // 카드 생성함수
 const makeCard = (movie) => {
   const section = document.getElementById("section");
-  //console.log('movie', movie);
   const { id, title, poster_path, vote_average } = movie;
-  console.log(title)
   const card = `
     <div class="card" data-id="${id}" data-title="${title}" data-genre = "${movie.genre_ids}">
       <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="" />
