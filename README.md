@@ -3,20 +3,20 @@
 이 프로젝트는 내배캠에서 진행된 1조의 팀 프로젝트로, 
 인기 영화 목록을 보여주는 웹 애플리케이션입니다. 상세페이지가 구현되어 있습니다.
 
-이재헌 https://github.com/wogjs5656/
-역할: 팀장, 리뷰카드 생성 및 삭제 기능 구현
+이재헌 https://github.com/wogjs5656/  
+역할: 팀장, 리뷰카드 생성 및 삭제 기능 구현  
 
-강다빈 https://github.com/ratempty/
-역할: 부팀장 카테고리 및 메인페이지 구현
+강다빈 https://github.com/ratempty/  
+역할: 부팀장 카테고리 및 메인페이지 구현  
 
-구혜인 https://github.com/ghi3621
-역할: 팀원 상세페이지 API 구현
+구혜인 https://github.com/ghi3621  
+역할: 팀원 상세페이지 API 구현  
 
-조민근 https://github.com/alsgeun
-역할: 팀원 메인페이지 상세페이지 css 구현
+조민근 https://github.com/alsgeun  
+역할: 팀원 메인페이지 상세페이지 css 구현  
 
-류기돈 https://github.com/lyukid0n
-역할: 팀원 메인페이지, 상세페이지 및 리뷰 수정, 로컬스토리지 구현
+류기돈 https://github.com/lyukid0n  
+역할: 팀원 메인페이지, 상세페이지 및 리뷰 수정, 로컬스토리지 구현  
 
 ## Installation
 
