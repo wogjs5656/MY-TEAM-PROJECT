@@ -8,28 +8,33 @@
     </head>
     <body>
         <section></section>
-            <button class="backbutton" type="button" onclick="history.back();">BACK</button>
-        
-            <section id="section">
-                <section id="reviewSection">
-                  <h2 class="reviewWirte">영화 리뷰 작성</h2>
-                  <div id="form_review">
+        <button class="backbutton" type="button" onclick="history.back();">BACK</button>
+
+        <section id="section">
+            <section id="reviewSection">
+                <h2 class="reviewWirte">영화 리뷰 작성</h2>
+                <div id="form_review">
                     <div class="reviewForm">
-                      <label for="authorName">작성자</label>
-                      <input type="text" id="authorName" />
-          
-                      <label for="reviewText">리뷰 내용</label>
-                      <textarea id="reviewText" rows="4"></textarea>
-          
-                      <label for="confirmPassword">확인 비밀번호</label>
-                      <input type="password" id="confirmPassword" />
-          
-                      <button class="submitReviewBtn">리뷰 작성</button>
+                        <div class="idCheckContainer">
+                            <div class="idCheck">
+                                <label for="authorName">작성자</label>
+                                <input type="text" id="authorName" />
+                            </div>
+                            <div class="idCheck">
+                                <label for="confirmPassword">확인 비밀번호</label>
+                                <input type="password" id="confirmPassword" />
+                            </div>
+                        </div>
+
+                        <label for="reviewText">리뷰 내용</label>
+                        <textarea id="reviewText" rows="4"></textarea>
+
+                        <button class="submitReviewBtn">리뷰 작성</button>
                     </div>
-                  </div>
-                  <div id="reviewCards"></div>
-                </section>
-              </section>
+                </div>
+                <div id="reviewCards"></div>
+            </section>
+        </section>
 
         <script src="./script/apiKey.js"></script>
         <script src="./script/detail.js"></script>

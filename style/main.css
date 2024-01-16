@@ -10,10 +10,7 @@
   margin: 0;
   padding: 0;
 }
-a {
-  text-decoration: none;
-  color: #39caff;
-}
+
 body {
   font-family: "Pretendard-Regular";
   font-size: 16px;
@@ -27,7 +24,7 @@ header {
   gap: 20px;
   padding-top: 50px;
   padding-left: 20px;
-  color: lightblue;
+  color: #fffff0;
   justify-content: center;
   background-image: url("https://media.istockphoto.com/id/1458449584/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EB%B3%84%EC%9D%B4-%EB%B9%9B%EB%82%98%EB%8A%94-%EB%B0%A4%ED%95%98%EB%8A%98-%EB%B3%84%EC%9D%B4-%EB%B9%9B%EB%82%98%EB%8A%94-%EB%B0%A4-%EB%B3%84%EB%B9%9B%EC%9D%B4-%EB%B0%98%EC%A7%9D%EC%9D%B4%EB%8A%94-%EC%A7%84%ED%95%9C-%ED%8C%8C%EB%9E%80%EC%83%89-%EB%B0%B0%EA%B2%BD%EC%9D%B4-%EC%9A%B0%EC%A3%BC-%EA%B3%B5%EA%B0%84%EC%97%90%EC%84%9C-%EB%B0%98%EC%A7%9D%EC%9D%B4%EA%B3%A0-%EA%B9%9C%EB%B0%95%EC%9E%85%EB%8B%88%EB%8B%A4.jpg?s=640x640&k=20&c=NanprfAXAzLlLycyfoy0B_MangAxEAsrTLfIBp6HfIM=");
 }
@@ -52,7 +49,7 @@ header .searchBox input,
 header .searchBox button {
   height: 70px;
   width: 500px;
-  border: 2px solid lightblue;
+  border: 2px solid #fffff0;
   border-radius: 17px;
   background-color: transparent;
   color: white;
@@ -82,7 +79,7 @@ header button {
 .option2 {
   border-radius: 7px;
   border: 0px solid transparent;
-  background-color: #fbfbb0;
+  background-color: #fffff0;
   box-shadow: 1px 1px 5px 1px white;
   margin-right: 10px;
   text-align: center;
@@ -108,7 +105,7 @@ section {
   flex-flow: column nowrap;
   align-items: center;
   gap: 25px;
-  background: lightblue;
+  background: #fffff0;
   box-shadow: inset 1px 1px 10px 5px white;
   margin-bottom: 30px;
   border-radius: 20px;
