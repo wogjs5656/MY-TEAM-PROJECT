@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>임시 타이틀 : GooFlix</title>
+    <link rel="stylesheet" href="./style/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>GooFlix</h1>
+      <div class="searchWrap">
+        <div class="searchBox">
+          <input
+            type="text"
+            placeholder="영화제목을 검색해보세요"
+            id="search"
+          />
+          <button class="searchBtn" id="searchBtn">검색</button>
+        </div>
+      </div>
+    </header>
+    <div class="category">
+      <select class="option1"
+        name="genreChoice"
+        id="genreChoice"
+        onChange="selectGenre(value)"
+      >
+        <option value="all">전체</option>
+      </select>
+      <select class="option2"name="sorting" id="sorting" onChange="sorting(value)">
+        <option value="rate">평점</option>
+        <option value="name">이름</option>
+        <option value="date">발매일</option>
+      </select>
+    </div>
+    <section id="section"></section>
+    <script src="./script/apiKey.js"></script>
+    <script src="./script/main.js"></script>
+  </body>
 </html>
