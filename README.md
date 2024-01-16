@@ -33,8 +33,17 @@
 
 Back-end 반에서 디자인은 크게 고려사항이 아닐수는 있겠지만, 디자인 담당 뿐만 아니라 나름 다른조원 분들의 디테일적인 의견들이 녹여져 있는 부분이라고 생각합니다.
 ## Feature
-  - 페이지 이동
-    - Query String 이용
+  - 페이지 이동  
+    - Query String  
+      -  main page의 영화 카드를 누르면 받아온 기존 api를 기반으로 해당 카드의 정보를 detail page로 전달하여 나타내는 방식을 구현하였습니다.
+
+    ```js
+    window.location.href = `~ ~ html?movieId=${movieId}&title=${movieTitle}`;
+    ```
+    ![Alt text](image-1.png)
+    - Backbutton
+      - 메인페이지 -> 상세페이지
+      - 상세페이지 <- 메인페이지 
   - 카테고리
     - 장르와 발매일,이름,평점 순으로 정렬은 기존 받아온 api를 기반으로 정렬하되 발매일은 각 카드에서 바로 비교할 수 없어서 객체에 저장 후 다시 비교하는 방식을 사용했습니다.
   - API 사용
