@@ -114,7 +114,6 @@ const sorting = (value) => {
     acc[titleArr[index]] = releaseDate;
     return acc;
   }, {});
-  console.log(dateObj)
 
   if (value === "rate") {
     //평점순 정렬
